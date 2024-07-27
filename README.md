@@ -29,16 +29,17 @@ The "new" internet needs a new attention marketplace. Individual clients/apps/co
 The basic flow of the `PROMOTED NOTE` network is as follows
 1. `SELLER` Keypair signals they are willing to be shown `PROMOTED NOTE`s by updating their kind 0 event
 2. `BUYER` Keypair publishes `PROMOTED NOTE` event
-3. `MATCHER` matches `BUYER` and `SELLER` and publishes `MATCH` event
-4. `CLIENT` pulls all `MATCH` events for a given `SELLER`
-5. `CLIENT` confirms `SELLER` has all required data
-6. `CLIENT` displays `PROMOTED NOTE` preview to `SELLER`
-7. `SELLER` publishes `IMPRESSION` event
-8. IF `SELLER` completes `ACTION` of `PROMOTED NOTE` (default: click), `SELLER` publishes an `ACTION` event
-9. `SELLER` is presented `PROMOTED NOTE`
-10. After defined number of seconds `PROMOTED NOTE`, `SELLER`, `MATCHER`, and `IMPRESSOR` are paid the set amount of bitcoin over lightning
-11. `SELLER` publishes `CONVERSION` event
-12. `?` publishes `PAYOUT` event
+3. `BUYER` adds `PROMOTED NOTE` event id to kind 0
+4. `MATCHER` matches `BUYER` and `SELLER` and publishes `MATCH` event
+5. `CLIENT` pulls all `MATCH` events for a given `SELLER`
+6. `CLIENT` confirms `SELLER` has all required data
+7. `CLIENT` displays `PROMOTED NOTE` preview to `SELLER`
+8. `SELLER` publishes `IMPRESSION` event
+9. IF `SELLER` completes `ACTION` of `PROMOTED NOTE` (default: click), `SELLER` publishes an `ACTION` event
+10. `SELLER` is presented `PROMOTED NOTE`
+11. After defined number of seconds `PROMOTED NOTE`, `SELLER`, `MATCHER`, and `IMPRESSOR` are paid the set amount of bitcoin over lightning
+12. `SELLER` publishes `CONVERSION` event
+13. `?` publishes `PAYOUT` event
 
 
 ## EVENTS
