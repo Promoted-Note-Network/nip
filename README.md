@@ -27,7 +27,7 @@ The "new" internet needs a new attention marketplace. Individual clients/apps/co
 - `ACTION` - 
 
 The basic flow of the `PROMOTED NOTE` network is as follows
-1. `SELLER` Keypair signals they are willing to be shown ad by updating their kind 0 event
+1. `SELLER` Keypair signals they are willing to be shown `PROMOTED NOTE`s by updating their kind 0 event
 2. `BUYER` Keypair publishes `PROMOTED NOTE` event
 3. `MATCHER` matches `BUYER` and `SELLER` and publishes `MATCH` event
 4. `CLIENT` pulls all `MATCH` events for a given `SELLER`
