@@ -29,6 +29,8 @@ The "new" internet needs a new attention marketplace. Individual clients/apps/co
 Below are a set of new EVENT kinds to facilitate implementing a decentralized ad netwrok.
 
 ### METADATA (kind 0)
+In order to identify as a `BUYER` the following fields need to be added to the keypair's kind 0 event.
+
 **Buyer**
   ```js
   {
@@ -37,14 +39,15 @@ Below are a set of new EVENT kinds to facilitate implementing a decentralized ad
     ],
     "content": {
       ...,
-      "attention_buyer_minimum_duration": 15, 
-      "attention_buyer_maximum_duration": 60,
-      "attention_buyer_minimum_price": 50,
-      "attention_buyer_maximum_price": 200,
+      "attention_buyer_minimum_duration": 15, // optional
+      "attention_buyer_maximum_duration": 60, // required
+      "attention_buyer_minimum_price": 50, // optional
+      "attention_buyer_maximum_price": 200, // required
       "attention_buyer_promoted_content": ["<event-id>", "<event-id>", "<event-id>", ...], // promoted content event
     }
   }
   ```
+In order to identify as a `SELLER` the following fields need to be added to the keypair's kind 0 event.
 **Seller**
   ```js
   {
