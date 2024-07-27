@@ -29,17 +29,16 @@ The "new" internet needs a new attention marketplace. Individual clients/apps/co
 The basic flow of the `PROMOTED NOTE` network is as follows
 1. `SELLER` Keypair signals they are willing to be shown `PROMOTED NOTE`s by updating their kind 0 event
 2. `BUYER` Keypair publishes `PROMOTED NOTE` event
-3. `BUYER` adds `PROMOTED NOTE` event id to kind 0
-4. `MATCHER` matches `BUYER` and `SELLER` and publishes `MATCH` event
-5. `CLIENT` pulls all `MATCH` events for a given `SELLER`
-6. `CLIENT` confirms `SELLER` has all required data
-7. `CLIENT` displays `PROMOTED NOTE` preview to `SELLER`
-8. `SELLER` publishes `IMPRESSION` event
-9. IF `SELLER` completes `ACTION` of `PROMOTED NOTE` (default: click), `SELLER` publishes an `ACTION` event
-10. `SELLER` is presented `PROMOTED NOTE`
-11. After defined number of seconds `PROMOTED NOTE`, `SELLER`, `MATCHER`, and `IMPRESSOR` are paid the set amount of bitcoin over lightning
-12. `SELLER` publishes `CONVERSION` event
-13. `?` publishes `PAYOUT` event
+3. `MATCHER` matches `BUYER` and `SELLER` and publishes `MATCH` event
+4. `CLIENT` pulls all `MATCH` events for a given `SELLER`
+5. `CLIENT` confirms `SELLER` has all required data
+6. `CLIENT` displays `PROMOTED NOTE` preview to `SELLER`
+7. `SELLER` publishes `IMPRESSION` event
+8. IF `SELLER` completes `ACTION` of `PROMOTED NOTE` (default: click), `SELLER` publishes an `ACTION` event
+9. `SELLER` is presented `PROMOTED NOTE`
+10. After defined number of seconds `PROMOTED NOTE`, `SELLER`, `MATCHER`, and `IMPRESSOR` are paid the set amount of bitcoin over lightning
+11. `SELLER` publishes `CONVERSION` event
+12. `?` publishes `PAYOUT` event
 
 
 ## EVENTS
@@ -83,8 +82,8 @@ In order to identify as a `SELLER` the following fields need to be added to the 
   ```
 
 
-### PROMOTED CONTENT
-This event is published by a `BUYER` when `PROMOTED CONTENT` is added to the network.
+### PROMOTED NOTE
+This event is published by a `BUYER` when `PROMOTED NOTE` is added to the network.
 
 #### TAGS
 
@@ -94,7 +93,9 @@ This event is published by a `BUYER` when `PROMOTED CONTENT` is added to the net
 | buyer_id                  | true     | hex    | The hex of the public key of owner of content |
 | action                    | true     | string | [ click / follow / retweet / reply / quote / zap ] |
 | type                      | true     | string | Type of promoted content [text / image / audio /video ] |
-| satoshis                  | true     | int    | How many sats are being offered to view content |
+| payout_satoshis_seller    | true     | int    | How many sats are being offered to view content |
+| payout_satoshis_matcher   | true     | int    | How many sats are being offered to whoever made the match that led to conversion |
+| payout_satoshis_impressor | true     | int    | How many sats are being offered to whoever made the impression that led to conversion |
 | seconds                   | true     | int    | Length of content in the case of audio or video. Duration of viewing in the case of text or image  |
 | title                     | true     | string | Primary text that will be displayed when offering user promoted content |
 | subtitle                  | false    | string | Secondary text that may be display when offering user promoted content  |
@@ -110,8 +111,10 @@ This event is published by a `BUYER` when `PROMOTED CONTENT` is added to the net
   "kind": "?"
   "tags": [
     ["type", "< text | image | audio | video >"]
-    ["action", "< click >"]
-    ["satoshis", "120"],
+    ["action", "< click >"],
+    ["payout_satoshis_seller", "100"],
+    ["payout_satoshis_matcher", "10"],
+    ["payout_satoshis_impressor", "10"],
     ["seconds": "60"],
     ["buyer_id": "<hex>"],
     ["seller_whitelist", "<hex>"],
@@ -122,7 +125,9 @@ This event is published by a `BUYER` when `PROMOTED CONTENT` is added to the net
     "buyer_id": "<hex>"
     "type": "<text | image | audio | video>",
     "action": "< click >"
-    "satoshis": 120,
+    "payout_satoshis_seller": 100,
+    "payout_satoshis_matcher": 10,
+    "payout_satoshis_impressor": 10,
     "seconds": 60
     "title": "",
     "subtitle": "",
