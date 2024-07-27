@@ -142,7 +142,8 @@ This event is published by `MATCHER` when a client matches a `SELLER` of attenti
     ["content_id": "<event-id>"],
     ["p", "<buyer_id>"],
     ["p", "<seller_id>"],
-    ["p", "<match_maker_id>"]
+    ["p", "<match_maker_id>"],
+    ["e", "<content_id>"],
   ],
   "content": {
     "buyer_id": "<hex>",
