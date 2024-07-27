@@ -30,7 +30,7 @@ The basic flow of the `PROMOTED NOTE` network is as follows
 1. `SELLER` Keypair signals they are willing to be shown ad by updating their kind 0 event
 2. `BUYER` Keypair publishes `PROMOTED NOTE` event
 3. `MATCHER` matches `BUYER` and `SELLER` and publishes `MATCH` event
-4. `CLIENT`s pulls all `MATCH` events for a given `KEYPAIR`
+4. `CLIENT` pulls all `MATCH` events for a given `SELLER`
 5. `CLIENT` confirms `SELLER` has all required data
 6. `CLIENT` displays `PROMOTED NOTE` preview to `SELLER`
 7. `SELLER` publishes `IMPRESSION` event
