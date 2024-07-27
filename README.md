@@ -3,7 +3,7 @@
 NIP-XX
 ======
 
-Nostr Promoted Content (Ad) Network
+Promoted Note Network
 -----------------
 
 `draft` `optional`
@@ -12,18 +12,34 @@ Nostr Promoted Content (Ad) Network
 The "new" internet needs a new attention marketplace. Individual clients/apps/companies shouldn't have to build out an internal ad-tech in order to monetize projects. Instead of advertising being based on centralization, NOSTR should provide a decentralized ad network for the benefit of the entire network. 
 
 ## Terms
+- `KEYPAIR` - A NOSTR key-pair 
+- `BUYER` - A NOSTR `KEYPAIR` with specific kind 0 metadata 
+- `SELLER` - A NOSTR `KEYPAIR` with specific kind 0 metadata
+- `PROMOTED NOTE` - A note that pays you
+- `MATCH` - When a `BUYER` is willing to pay equal to or greater than what a `SELLER` is asking
+- `IMPRESSION` - `SELLER` views preview of `PROMOTED NOTE`
+- `CONVERSION` - When a `SELLER` consumes `PROMOTED NOTE`
+- `PAYOUT` - who gets paid after conversion
+- `CLIENT` - any nostr client i.e. damus, ametheyst, etc. 
 
-- `BUYER` - A NOSTR key-pair with specific kind 0 metadata 
-- `SELLER` - A NOSTR key-pair with specific kind 0 metadata
-- `Promoted Content` - 
-- `Match` - When a Buyer is willing to pay equal to or greater than what a Seller is asking
-- `Impression`
-- `Conversion` - When a seller consumes (reads/listens/watches) a piece of promoted content
-- `Payout` - who gets paid after conversion
-- `Client` - 
 - `MATCHER` - 
-- `IMPRESSOR`
-- `ACTION`
+- `IMPRESSOR` - 
+- `ACTION` - 
+
+The basic flow of the `PROMOTED NOTE` network is as follows
+1. `SELLER` Keypair signals they are willing to be shown ad by updating their kind 0 event
+2. `BUYER` Keypair publishes `PROMOTED NOTE` event
+3. `MATCHER` matches `BUYER` and `SELLER` and publishes `MATCH` event
+4. `CLIENT`s pulls all `MATCH` events for a given `KEYPAIR`
+5. `CLIENT` confirms `SELLER` has all required data
+6. `CLIENT` displays `PROMOTED NOTE` preview to `SELLER`
+7. `SELLER` publishes `IMPRESSION` event
+8. IF `SELLER` completes `ACTION` of `PROMOTED NOTE` (default: click), `SELLER` publishes an `ACTION` event
+9. `SELLER` is presented `PROMOTED NOTE`
+10. After defined number of seconds `PROMOTED NOTE`, `SELLER`, `MATCHER`, and `IMPRESSOR` are paid the set amount of bitcoin over lightning
+11. `SELLER` publishes `CONVERSION` event
+12. `?` publishes `PAYOUT` event
+
 
 ## EVENTS
 Below are a set of new EVENT kinds to facilitate implementing a decentralized ad netwrok.
@@ -57,10 +73,10 @@ In order to identify as a `SELLER` the following fields need to be added to the 
     ],
     "content": {
       ...,
-      "attention_seller_maximum_duration": 60,
-      "attention_seller_minimum_price": 50,
-      "attention_seller_buyer_whitelist": ["hex","hex"],
-      "attention_seller_buyer_blacklist": ["hex","hex"],
+      "attention_seller_maximum_duration": 60, // required
+      "attention_seller_minimum_price": 50, // required
+      "attention_seller_buyer_whitelist": ["hex","hex"], // optional
+      "attention_seller_buyer_blacklist": ["hex","hex"], // optional
     }
   }
   ```
@@ -93,7 +109,7 @@ This event is published by a `BUYER` when `PROMOTED CONTENT` is added to the net
   "kind": "?"
   "tags": [
     ["type", "< text | image | audio | video >"]
-    ["action", "< click | follow | retweet | reply | quote | zap >"]
+    ["action", "< click >"]
     ["satoshis", "120"],
     ["seconds": "60"],
     ["buyer_id": "<hex>"],
@@ -104,7 +120,7 @@ This event is published by a `BUYER` when `PROMOTED CONTENT` is added to the net
   "content": {
     "buyer_id": "<hex>"
     "type": "<text | image | audio | video>",
-    "action": "<click | follow | retweet | reply | quote | zap >"
+    "action": "< click >"
     "satoshis": 120,
     "seconds": 60
     "title": "",
@@ -197,7 +213,7 @@ This event is published by the `SELLER` when a client displays a `MATCH` to a `S
 ```
 
 ### ACTION
-This event is published when a `SELLER` completes the desired `ACTION`. This event **MUST** be published in order to be paid if a conversion happens from this `MATCH`.
+This event is published when a `CLIENT` completes the desired `ACTION`. This event **MUST** be published in order to be paid if a conversion happens from this `MATCH`.
 
 #### TAGS
 
@@ -223,7 +239,7 @@ This event is published when a `SELLER` completes the desired `ACTION`. This eve
     ["content_id": "<event_id>"],
     ["match_id": "<event_id>"],
     ["impressor_id": "<hex>"],
-    ["action", "< click | follow | retweet | reply | quote | zap >"],
+    ["action", "< click >"],
     ["e", "<content_id>"],
     ["e", "<match_id>"]
     ["p", "<buyer_id>"],
@@ -238,7 +254,7 @@ This event is published when a `SELLER` completes the desired `ACTION`. This eve
     "content_id": "<event_id>",
     "impressor_id": "<hex>",
     "match_id": "<event_id>",
-    "action": "< click | follow | retweet | reply | quote | zap >",
+    "action": "< click >",
   }
 }
 ```
