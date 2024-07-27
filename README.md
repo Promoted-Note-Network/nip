@@ -142,7 +142,9 @@ This event is published by a `BUYER` when `PROMOTED NOTE` is added to the networ
 ```
 
 ### MATCH
-This event is published by `MATCHER` when a client matches a `SELLER` of attention with a `BUYER` of attention. This event **MUST** be published in order to be paid if a `CONVERSION` happens from this match.
+This event is published by `MATCHER` when a `CLIENT` matches a `SELLER` of attention with a `BUYER` of attention. 
+
+This event **MUST** be published in order to be paid if a `CONVERSION` happens from this `MATCH`.
 
 #### TAGS
 
@@ -177,7 +179,9 @@ This event is published by `MATCHER` when a client matches a `SELLER` of attenti
 ```
   
 ### IMPRESSION
-This event is published by the `SELLER` when a client displays a `MATCH` to a `SELLER`. This event **MUST** be published in order to be paid if a `CONVERSION` happens from this `MATCH`.
+This event is published by the `SELLER` when a client displays a `MATCH` to a `SELLER`. 
+
+This event **MUST** be published in order to be paid if a `CONVERSION` happens from this `MATCH`.
 
 #### TAGS
 
@@ -219,7 +223,9 @@ This event is published by the `SELLER` when a client displays a `MATCH` to a `S
 ```
 
 ### ACTION
-This event is published when a `CLIENT` completes the desired `ACTION`. This event **MUST** be published in order to be paid if a conversion happens from this `MATCH`.
+This event is published by `SELLER` after completing the desired `ACTION`. 
+
+This event **MUST** be published in order to be paid if a `CONVERSION` happens from this `ACTION`.
 
 #### TAGS
 
@@ -232,7 +238,7 @@ This event is published when a `CLIENT` completes the desired `ACTION`. This eve
 | impressor_id     | true     | hex    | The hex of the public key of `IMPRESSOR`   |
 | match_id         | true     | string | event_id of `MATCH` event                  |
 | content_id       | true     | string | event_id of `PROMOTED CONTENT` event       |
-| action           | true     | string | [ click / follow / retweet / reply / quote / zap ] |
+| action           | true     | string | [ click ] |
 
 
 ```js
