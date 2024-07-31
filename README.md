@@ -1,5 +1,3 @@
-# btc-ad-server
-
 NIP-XX
 ======
 
