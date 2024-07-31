@@ -13,8 +13,8 @@ The "new" internet needs a new attention marketplace. Individual clients/apps/co
 - `KEYPAIR` - A NOSTR key-pair
 
 ### EVENT PUBLISHERS
-- **BUYER** - A NOSTR `KEYPAIR` with specific kind 0 metadata who wants to 'buy' attention from the marketplace. publishes `PROMOTED NOTE` events
-- **SELLER** - A NOSTR `KEYPAIR` with specific kind 0 metadata who wants to 'sell' attention from the marketplace. publishes `IMPRESSION`, `ACTION`
+- **BUYER** - A `KEYPAIR` with specific kind 0 metadata who wants to 'buy' attention from the marketplace. publishes `PROMOTED NOTE` events
+- **SELLER** - A `KEYPAIR` with specific kind 0 metadata who wants to 'sell' attention from the marketplace. publishes `IMPRESSION`, `ACTION`
 - **CLIENT** - A NOSTR client i.e. damus, ametheyst, etc.
 - **MATCHER** - A service that matches `BUYERS` and `SELLERS` and publishes `MATCH` events.
 - **IMPRESSOR** - A NOSTR `CLIENT` that displays `MATCH` events to `SELLERS`
@@ -32,9 +32,10 @@ The "new" internet needs a new attention marketplace. Individual clients/apps/co
 Each particiant in the network has a different but complimentary set of incentives to keep the attention marketplace honest. 
 
 - **BUYERS** are incentivised to place ads in the network because it is low stakes. If no one participates then the spend/lose no money. And they are incentivised to adjust their `PAYOUTS` if they find that people are participating, but they are not meeting their price threshold.
-- **SELLERS** are incentivized to participate in the network because they are able to opt-in and opt-out at will and they are able to 'mine bitcon with their attention'
-- **MATCHERS** are incentivized to participate in the network because it a revenue stream for compute resources. Think of this as home mining w/o asics
+- **SELLERS** are incentivized to participate in the network because they are able to opt-in and opt-out at will and they are able to 'mine bitcon with their attention'. They also have complete control of their data since they are the KEYPAIR that publishes the `IMPRESSION` and the `ACTION` events.
+- **MATCHERS** are incentivized to participate in the network because it a revenue stream for compute resources. Similar to home mining w/o asics. 
 - **IMPRESSORS** are incentivized to participate in the network because it is a revenue stream and their users have opted in so there is no risk of revolt
+- **CONVERTERS** are incentivized to participate in the network because they are ultimately who does the paying out. They are inentivised to check all relevant data to ensure that everything 'looks good' before initiating payout. Similar to bitcoin nodes validating blocks.
 
 ## FLOW
 The basic flow of the `PROMOTED NOTE` network is as follows
