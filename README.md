@@ -10,33 +10,38 @@ Promoted Note Network
 The "new" internet needs a new attention marketplace. Individual clients/apps/companies shouldn't have to build out an internal ad-tech in order to monetize projects. Instead of advertising being based on centralization, NOSTR should provide a decentralized ad network for the benefit of the entire network. 
 
 ## Terms
-- `KEYPAIR` - A NOSTR key-pair 
-- `BUYER` - A NOSTR `KEYPAIR` with specific kind 0 metadata 
-- `SELLER` - A NOSTR `KEYPAIR` with specific kind 0 metadata
+- `KEYPAIR` - A NOSTR key-pair
+
+### EVENT PUBLISHERS
+- **BUYER** - A NOSTR `KEYPAIR` with specific kind 0 metadata. publishes `PROMOTED NOTE` events
+- **SELLER** - A NOSTR `KEYPAIR` with specific kind 0 metadata. ppublishes `IMPRESSION`, `ACTION`
+- **CLIENT** - A NOSTR client i.e. damus, ametheyst, etc.
+- **MATCHER** - A service that matches `BUYERS` and `SELLERS` and publishes `MATCH` events.
+- **IMPRESSOR** - A NOSTR `CLIENT` that displays `MATCH` events to `SELLERS`
+- **CONVERTER** - A NOSTR `CLIENT` that shows the full promoted note and ensures that the `SELLER` waited the corrrect duration before triggering the `PAYOUT` and publishing a `PAYOUT` event. 
+
+### NEW EVENT TYPES
 - `PROMOTED NOTE` - A note that pays you
 - `MATCH` - When a `BUYER` is willing to pay equal to or greater than what a `SELLER` is asking
-- `IMPRESSION` - `SELLER` views preview of `PROMOTED NOTE`
+- `IMPRESSION` - `SELLER` views preview of `PROMOTED NOTE` and publishes an IMPRESSION event
+- `ACTION` - Task for the SELLER to complete relative to the `PROMOTED NOTE`. (default click)
 - `CONVERSION` - When a `SELLER` consumes `PROMOTED NOTE`
-- `PAYOUT` - who gets paid after conversion
-- `CLIENT` - any nostr client i.e. damus, ametheyst, etc. 
+- `PAYOUT` - who got paid after `CONVERSION`
 
-- `MATCHER` - 
-- `IMPRESSOR` - 
-- `ACTION` - 
-
+## FLOW
 The basic flow of the `PROMOTED NOTE` network is as follows
-1. `SELLER` Keypair signals they are willing to be shown `PROMOTED NOTE`s by updating their kind 0 event
-2. `BUYER` Keypair publishes `PROMOTED NOTE` event
+1. `SELLER` signals they are willing to be shown `PROMOTED NOTE`s by updating their kind 0 event
+2. `BUYER` publishes `PROMOTED NOTE` event
 3. `MATCHER` matches `BUYER` and `SELLER` and publishes `MATCH` event
 4. `CLIENT` pulls all `MATCH` events for a given `SELLER`
 5. `CLIENT` confirms `SELLER` has all required data
-6. `CLIENT` displays `PROMOTED NOTE` preview to `SELLER`
+6. `CLIENT` displays `PROMOTED NOTE`(s) preview to `SELLER`
 7. `SELLER` publishes `IMPRESSION` event
 8. IF `SELLER` completes `ACTION` of `PROMOTED NOTE` (default: click), `SELLER` publishes an `ACTION` event
 9. `SELLER` is presented `PROMOTED NOTE`
 10. After defined number of seconds `PROMOTED NOTE`, `SELLER`, `MATCHER`, and `IMPRESSOR` are paid the set amount of bitcoin over lightning
 11. `SELLER` publishes `CONVERSION` event
-12. `?` publishes `PAYOUT` event
+12. `CONVERTER` publishes `PAYOUT` event
 
 
 ## EVENTS
@@ -89,7 +94,7 @@ This event is published by a `BUYER` when `PROMOTED NOTE` is added to the networ
 | Field                     | Required | Type   | Description |
 |---------------------------|----------|--------|-------------|
 | buyer_id                  | true     | hex    | The hex of the public key of owner of content |
-| action                    | true     | string | [ click / follow / retweet / reply / quote / zap ] |
+| action                    | true     | string | [ click ] |
 | type                      | true     | string | Type of promoted content [text / image / audio /video ] |
 | payout_satoshis_seller    | true     | int    | How many sats are being offered to view content |
 | payout_satoshis_matcher   | true     | int    | How many sats are being offered to whoever made the match that led to conversion |
@@ -270,7 +275,7 @@ This event **MUST** be published in order to be paid if a `CONVERSION` happens f
 ```
 
 ### CONVERSION
-This event is published when a `SELLER` completes the desired `ACTION`.
+This event is published when a `SELLER` 'consumes' the `PROMTED NOTE` for the desired number of seconds
 ```js
 {
   "kind": "?"
@@ -293,6 +298,48 @@ This event is published when a `SELLER` completes the desired `ACTION`.
     ["p", "<impressor_id>"],
   ],
   "content": {
+    "content_id": "<event_id>",
+    "match_id": "<event_id>",
+    "impression_id": "<event_id>",
+    "action_id": "<event_id>",
+    "buyer_id": "<hex>",
+    "seller_id": "<hex>",
+    "match_maker_id": "<hex>",
+    "impressor_id": "<hex>",
+  }
+}
+```
+
+### PAYOUT
+This event is published when a `CONVERTER` paysout the `SELLER`, `MATCHER` and `IMPRESSOR`
+```js
+{
+  "kind": "?"
+  "tags": [
+    ["payout_satoshis_seller", "100"],
+    ["payout_satoshis_matcher", "10"],
+    ["payout_satoshis_impressor", "10"],
+    ["content_id": "<event_id>"],
+    ["match_id": "<event_id>"],
+    ["impression_id": "<event_id>"],
+    ["action_id": "<event_id>"],
+    ["buyer_id": "<hex>"],
+    ["seller_id": "<hex>"],
+    ["match_maker_id": "<hex>"],
+    ["impressor_id": "<hex>"],
+    ["e", "<content_id>"],
+    ["e", "<match_id>"],
+    ["e", "<impression_id>"],
+    ["e", "<action_id>"],
+    ["p", "<buyer_id>"],
+    ["p", "<seller_id>"],
+    ["p", "<match_maker_id>"],
+    ["p", "<impressor_id>"],
+  ],
+  "content": {
+    "payout_satoshis_seller": 100,
+    "payout_satoshis_matcher": 10,
+    "payout_satoshis_impressor": 10,
     "content_id": "<event_id>",
     "match_id": "<event_id>",
     "impression_id": "<event_id>",
