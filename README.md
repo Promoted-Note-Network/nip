@@ -41,7 +41,7 @@ Each particiant in the network has a different but complimentary set of incentiv
 There are four(4) different types of `CLIENTS` for this process to work. Some client's will contain the functionality of all three but many will only contain one(1) or two(0)
 - Seller Opt-in client: this client supports a user opting into the promoted note network. They will need to add the ability for a user to set their `attention_seller_*` fields
 - Buyer Opt-in client: this client supports a user publishing a promoted note. They will also need to add the ability for a user to set their `attention_buyer_*` fields
-- Promoted Note Preview client: this client supports notifying `SELLERS` there there are `PROMOTED NOTES` that match their `attention_seller_*` fields
+- Preview client: this client supports notifying `SELLERS` there there are `PROMOTED NOTES` that match their `attention_seller_*` fields
 - Converter client: this client supports showing `SELLERS` the full promoted note and is responsible for handling the `PAYOUTS`.
 
 ## FLOW
