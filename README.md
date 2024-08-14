@@ -183,7 +183,7 @@ This event **MUST** be published in order to be paid if a `CONVERSION` happens f
   "tags": [
     ["buyer_id": "<hex>"],
     ["seller_id": "<hex>"],
-    ["match_maker_id": "<hex>"],
+    ["matcher_id": "<hex>"],
     ["content_id": "<event-id>"],
     ["p", "<buyer_id>"],
     ["p", "<seller_id>"],
@@ -193,7 +193,7 @@ This event **MUST** be published in order to be paid if a `CONVERSION` happens f
   "content": {
     "buyer_id": "<hex>",
     "seller_id": "<hex>",
-    "match_maker_id": "<hex>",
+    "matcher_id": "<hex>",
     "content_id": "<event-id>",
   }
 }
@@ -211,7 +211,7 @@ This event **MUST** be published in order to be paid if a `CONVERSION` happens f
 |------------------|----------|--------|-------------|
 | buyer_id         | true     | hex    | The hex of the public key of BUYER       |
 | seller_id        | true     | hex    | The hex of the public key of SELLER      |
-| matcher_maker_id | true     | hex    | The hex of the public key of MATCH MAKER |
+| matcher_id       | true     | hex    | The hex of the public key of MATCH MAKER |
 | impressor_id     | true     | hex    | The hex of the public key of IMPRESSOR   |
 | match_id         | true     | string | event_id of MATCH event                  |
 | content_id       | true     | string | event_id of PROMOTED CONTENT event       |
@@ -223,20 +223,20 @@ This event **MUST** be published in order to be paid if a `CONVERSION` happens f
   "tags": [
     ["buyer_id": "<hex>"],
     ["seller_id": "<hex>"],
-    ["match_maker_id": "<hex>"],
+    ["matcher_id": "<hex>"],
     ["content_id": "<event_id>"],
     ["match_id": "<event_id>"],
     ["impressor_id": "<hex>"]
     ["e", "<content_id>"]
     ["p", "<buyer_id>"],
     ["p", "<seller_id>"],
-    ["p", "<match_maker_id>"],
+    ["p", "<matcher_id>"],
     ["p", "<impressor_id>"],
   ],
   "content": {
     "buyer_id": "<hex>",
     "seller_id": "<hex>",
-    "match_maker_id": "<hex>",
+    "matcher_id": "<hex>",
     "content_id": "<event-id>",
     "impressor_id": "<hex>"
   }
@@ -255,7 +255,7 @@ This event **MUST** be published in order to be paid if a `CONVERSION` happens f
 |------------------|----------|--------|-------------|
 | buyer_id         | true     | hex    | The hex of the public key of `BUYER`       |
 | seller_id        | true     | hex    | The hex of the public key of `SELLER`      |
-| matcher_maker_id | true     | hex    | The hex of the public key of `MATCH MAKER` |
+| matcher_id       | true     | hex    | The hex of the public key of `MATCH MAKER` |
 | impressor_id     | true     | hex    | The hex of the public key of `IMPRESSOR`   |
 | match_id         | true     | string | event_id of `MATCH` event                  |
 | content_id       | true     | string | event_id of `PROMOTED CONTENT` event       |
@@ -268,7 +268,7 @@ This event **MUST** be published in order to be paid if a `CONVERSION` happens f
   "tags": [
     ["buyer_id": "<hex>"],
     ["seller_id": "<hex>"],
-    ["match_maker_id": "<hex>"],
+    ["matcher_id": "<hex>"],
     ["content_id": "<event_id>"],
     ["match_id": "<event_id>"],
     ["impressor_id": "<hex>"],
@@ -277,13 +277,13 @@ This event **MUST** be published in order to be paid if a `CONVERSION` happens f
     ["e", "<match_id>"]
     ["p", "<buyer_id>"],
     ["p", "<seller_id>"],
-    ["p", "<match_maker_id>"],
+    ["p", "<matcher_id>"],
     ["p", "<impressor_id>"],
   ],
   "content": {
     "buyer_id": "<hex>",
     "seller_id": "<hex>",
-    "match_maker_id": "<hex>",
+    "matcher_id": "<hex>",
     "content_id": "<event_id>",
     "impressor_id": "<hex>",
     "match_id": "<event_id>",
@@ -304,7 +304,7 @@ This event is published when a `SELLER` 'consumes' the `PROMTED NOTE` for the de
     ["action_id": "<event_id>"],
     ["buyer_id": "<hex>"],
     ["seller_id": "<hex>"],
-    ["match_maker_id": "<hex>"],
+    ["matcher_id": "<hex>"],
     ["impressor_id": "<hex>"],
     ["e", "<content_id>"],
     ["e", "<match_id>"],
@@ -312,7 +312,7 @@ This event is published when a `SELLER` 'consumes' the `PROMTED NOTE` for the de
     ["e", "<action_id>"],
     ["p", "<buyer_id>"],
     ["p", "<seller_id>"],
-    ["p", "<match_maker_id>"],
+    ["p", "<matcher_id>"],
     ["p", "<impressor_id>"],
   ],
   "content": {
@@ -322,7 +322,7 @@ This event is published when a `SELLER` 'consumes' the `PROMTED NOTE` for the de
     "action_id": "<event_id>",
     "buyer_id": "<hex>",
     "seller_id": "<hex>",
-    "match_maker_id": "<hex>",
+    "matcher_id": "<hex>",
     "impressor_id": "<hex>",
   }
 }
@@ -343,7 +343,7 @@ This event is published when a `CONVERTER` paysout the `SELLER`, `MATCHER` and `
     ["action_id": "<event_id>"],
     ["buyer_id": "<hex>"],
     ["seller_id": "<hex>"],
-    ["match_maker_id": "<hex>"],
+    ["matcher_id": "<hex>"],
     ["impressor_id": "<hex>"],
     ["e", "<content_id>"],
     ["e", "<match_id>"],
@@ -351,7 +351,7 @@ This event is published when a `CONVERTER` paysout the `SELLER`, `MATCHER` and `
     ["e", "<action_id>"],
     ["p", "<buyer_id>"],
     ["p", "<seller_id>"],
-    ["p", "<match_maker_id>"],
+    ["p", "<matcher_id>"],
     ["p", "<impressor_id>"],
   ],
   "content": {
@@ -364,7 +364,7 @@ This event is published when a `CONVERTER` paysout the `SELLER`, `MATCHER` and `
     "action_id": "<event_id>",
     "buyer_id": "<hex>",
     "seller_id": "<hex>",
-    "match_maker_id": "<hex>",
+    "matcher_id": "<hex>",
     "impressor_id": "<hex>",
   }
 }
