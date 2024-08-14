@@ -12,7 +12,7 @@ The "new" internet needs a new attention marketplace. Individual clients/apps/co
 ## Terms
 - `KEYPAIR` - A NOSTR key-pair
 
-### EVENT PUBLISHERS
+### ACTORS
 - **BUYER** - A `KEYPAIR` with specific kind 0 metadata who wants to 'buy' attention from the marketplace. publishes `PROMOTED NOTE` events
 - **SELLER** - A `KEYPAIR` with specific kind 0 metadata who wants to 'sell' attention from the marketplace. publishes `IMPRESSION`, `ACTION`
 - **CLIENT** - A NOSTR client i.e. damus, ametheyst, etc.
