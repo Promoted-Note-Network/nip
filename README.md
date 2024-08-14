@@ -48,16 +48,16 @@ There are four(4) different types of `CLIENTS` for this process to work. Some cl
 The basic flow of the `PROMOTED NOTE` network is as follows
 1. `SELLER` signals they are willing to be shown `PROMOTED NOTE`s by updating their kind 0 event
 2. `BUYER` publishes `PROMOTED NOTE` event
-3. `MATCHER` matches `BUYER` and `SELLER` and publishes `MATCH` event
-4. `CLIENT` pulls all `MATCH` events for a given `SELLER`
-5. `CLIENT` confirms `SELLER` has all required data
-6. `CLIENT` displays `PROMOTED NOTE`(s) preview to `SELLER`
-7. `SELLER` publishes `IMPRESSION` event
-8. IF `SELLER` completes `ACTION` of `PROMOTED NOTE` (default: click), `SELLER` publishes an `ACTION` event
-9. `SELLER` is presented `PROMOTED NOTE`
-10. After defined number of seconds viewing the `PROMOTED NOTE`, the `SELLER` publishes `CONVERSION` event
-11. `CONVERTER` publishes `PAYOUT` event
-12. `CONVERTER` pays the `SELLER`, `MATCHER`, and `IMPRESSOR` the amounts defined in the `PROMOTED NOTE`
+3. `MATCHER` requests all `SELLERS` and `PROMOTED NOTES` from relay(s), creates `MATCHES`, and publishes `MATCH` events to relay(s).
+5. `CLIENT` pulls all `MATCH` events for a given `SELLER`
+6. `CLIENT` confirms `SELLER` has all required data
+7. `CLIENT` displays `PROMOTED NOTE`(s) preview to `SELLER`
+8. `SELLER` publishes `IMPRESSION` event
+9. IF `SELLER` completes `ACTION` of `PROMOTED NOTE` (default: click), `SELLER` publishes an `ACTION` event
+10. `SELLER` is presented `PROMOTED NOTE`
+11. After defined number of seconds viewing the `PROMOTED NOTE`, the `SELLER` publishes `CONVERSION` event
+12. `CONVERTER` publishes `PAYOUT` event
+13. `CONVERTER` pays the `SELLER`, `MATCHER`, and `IMPRESSOR` the amounts defined in the `PROMOTED NOTE`
 
 ## EVENTS
 Below are a set of new EVENT kinds to facilitate implementing a decentralized ad netwrok.
