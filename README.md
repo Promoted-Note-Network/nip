@@ -16,7 +16,7 @@ The "new" internet needs a new attention marketplace. Individual clients/apps/co
 - **BUYER** - A `KEYPAIR` with specific kind 0 metadata who wants to 'buy' attention from the marketplace. publishes `PROMOTED NOTE` events
 - **SELLER** - A `KEYPAIR` with specific kind 0 metadata who wants to 'sell' attention from the marketplace. publishes `IMPRESSION`, `ACTION`
 - **CLIENT** - A NOSTR client i.e. damus, ametheyst, etc.
-- **MATCHER** - A service that matches `BUYERS` and `SELLERS` and publishes `MATCH` events.
+- **MATCHER** - A service(DVM) that matches `BUYERS` and `SELLERS` and publishes `MATCH` events.
 - **IMPRESSOR** - A NOSTR `CLIENT` that displays `MATCH` events to `SELLERS`
 - **CONVERTER** - A NOSTR `CLIENT` that shows the full promoted note and ensures that the `SELLER` waited the corrrect duration before triggering the `PAYOUT` and publishing a `PAYOUT` event. 
 
