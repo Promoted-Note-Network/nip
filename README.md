@@ -55,12 +55,9 @@ The basic flow of the `PROMOTED NOTE` network is as follows
 7. `SELLER` publishes `IMPRESSION` event
 8. IF `SELLER` completes `ACTION` of `PROMOTED NOTE` (default: click), `SELLER` publishes an `ACTION` event
 9. `SELLER` is presented `PROMOTED NOTE`
-10. After defined number of seconds viewing the `PROMOTED NOTE`, the `SELLER`, `MATCHER`, and `IMPRESSOR` are paid the amounts defined in the `PROMOTED NOTE`
-11. `SELLER` publishes `CONVERSION` event
-12. `CONVERTER` publishes `PAYOUT` event
-
-
-
+10. After defined number of seconds viewing the `PROMOTED NOTE`, the `SELLER` publishes `CONVERSION` event
+11. `CONVERTER` publishes `PAYOUT` event
+12. `CONVERTER` pays the `SELLER`, `MATCHER`, and `IMPRESSOR` the amounts defined in the `PROMOTED NOTE`
 
 ## EVENTS
 Below are a set of new EVENT kinds to facilitate implementing a decentralized ad netwrok.
