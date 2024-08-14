@@ -55,7 +55,7 @@ The basic flow of the `PROMOTED NOTE` network is as follows
 7. `SELLER` publishes `IMPRESSION` event
 8. IF `SELLER` completes `ACTION` of `PROMOTED NOTE` (default: click), `SELLER` publishes an `ACTION` event
 9. `SELLER` is presented `PROMOTED NOTE`
-10. After defined number of seconds `PROMOTED NOTE`, `SELLER`, `MATCHER`, and `IMPRESSOR` are paid the set amount of bitcoin over lightning
+10. After defined number of seconds viewing the `PROMOTED NOTE`, the `SELLER`, `MATCHER`, and `IMPRESSOR` are paid the amounts defined in the `PROMOTED NOTE`
 11. `SELLER` publishes `CONVERSION` event
 12. `CONVERTER` publishes `PAYOUT` event
 
